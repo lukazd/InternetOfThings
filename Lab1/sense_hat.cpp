@@ -154,13 +154,6 @@ int main()
                 fflush(stdout);
                 displayTimer = now;//HINT: LEAVE THIS LINE ALONE!!!
 
-                printf("\n")
-                printf("average roll: %4.1f, average pitch: %4.1f, average yaw: %4.1f, average temp: %4.1f",
-                        average_roll, average_pitch, average_yaw, average_temp);
-                printf("\n")
-                printf("roll: %4.1f, pitch: %4.1f, yaw: %4.1f, temp: %4.1f",
-                        roll, pitch, yaw, temp);
-
             }
 
             //  update rate every second
