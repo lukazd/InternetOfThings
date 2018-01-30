@@ -134,10 +134,10 @@ int main()
                 pointer += 1;
                 pointer %= NUM_READINGS;
 
-                average_yaw -= yaws[pointer]
-                average_pitch -= pitches[pointer]
-                average_roll -= rolls[pointer]
-                average_temp -= temps[pointer]
+                average_yaw -= yaws[pointer];
+                average_pitch -= pitches[pointer];
+                average_roll -= rolls[pointer];
+                average_temp -= temps[pointer];
 
                 printf("Sample rate %d: %s\n", sampleRate, RTMath::displayDegrees("", imuData.fusionPose));
 
