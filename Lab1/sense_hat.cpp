@@ -72,15 +72,15 @@ int main()
     //  set up for rate timer
     rateTimer = displayTimer = RTMath::currentUSecsSinceEpoch();
 
-    double average_yaw = 0;
-    double average_pitch = 0;
-    double average_roll = 0;
-    double average_temp = 0;
+    RTFLOAT average_yaw = 0;
+    RTFLOAT average_pitch = 0;
+    RTFLOAT average_roll = 0;
+    RTFLOAT average_temp = 0;
 
-    double yaws[NUM_READINGS];
-    double pitches[NUM_READINGS];
-    double rolls[NUM_READINGS];
-    double temps[NUM_READINGS];
+    RTFLOAT yaws[NUM_READINGS] = {0};
+    RTFLOAT pitches[NUM_READINGS] = {0};
+    RTFLOAT rolls[NUM_READINGS] = {0};
+    RTFLOAT temps[NUM_READINGS] = {0};
 
     int pointer = 0;
 
