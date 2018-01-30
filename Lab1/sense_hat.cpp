@@ -80,15 +80,15 @@ int main()
          *       Not polling at the correct rate can result in weird readings.
          */
 
-        int average_yaw = 0;
-        int average_pitch = 0;
-        int average_roll = 0;
-        int average_temp = 0;
+        double average_yaw = 0;
+        double average_pitch = 0;
+        double average_roll = 0;
+        double average_temp = 0;
 
-        double int yaws[READINGS];
-        double int pitches[READINGS];
-        double int rolls[READINGS];
-        double int temps[READINGS];
+        double yaws[NUM_READINGS];
+        double pitches[NUM_READINGS];
+        double rolls[NUM_READINGS];
+        double temps[NUM_READINGS];
 
         int pointer = 0;
 
@@ -142,10 +142,10 @@ int main()
                 printf("Sample rate %d: %s\n", sampleRate, RTMath::displayDegrees("", imuData.fusionPose));
 
                 if (pressure != NULL) {
-                    printf("\n")
+                    printf("\n");
                     printf("average roll: %4.1f, average pitch: %4.1f, average yaw: %4.1f, average temp: %4.1f",
                             average_roll, average_pitch, average_yaw, average_temp);
-                    printf("\n")
+                    printf("\n");
                     printf("roll: %4.1f, pitch: %4.1f, yaw: %4.1f, temp: %4.1f",
                         roll, pitch, yaw, temp);
                 }
