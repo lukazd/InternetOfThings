@@ -116,6 +116,12 @@ int main()
             //        The IMU is polled at the recommended rate, but this "if" statement ensures that the
             //        values are only displayed at a certain interval.
             if ((now - displayTimer) > 1000000) {
+
+                average_yaw -= yaws[pointer];
+                average_pitch -= pitches[pointer];
+                average_roll -= rolls[pointer];
+                average_temp -= temps[pointer];
+
                 RTFLOAT roll = imuData.fusionPose.x() * RTMATH_RAD_TO_DEGREE;
                 RTFLOAT pitch = imuData.fusionPose.y() * RTMATH_RAD_TO_DEGREE;
                 RTFLOAT yaw = imuData.fusionPose.z() * RTMATH_RAD_TO_DEGREE;
@@ -126,17 +132,12 @@ int main()
                 rolls[pointer] = roll;
                 temps[pointer] = temp;
 
-                average_yaw += yaws[pointer];
-                average_pitch += pitches[pointer];
-                average_roll += rolls[pointer];
-                average_temp += temps[pointer];
+                average_yaw += yaw
+                average_pitch += pitch
+                average_roll += roll
+                average_temp += temp;
 
                 pointer = (pointer + 1) % NUM_READINGS;
-
-                average_yaw -= yaws[pointer];
-                average_pitch -= pitches[pointer];
-                average_roll -= rolls[pointer];
-                average_temp -= temps[pointer];
 
                 printf("\n");
                 printf("Sample rate %d\n", sampleRate);
