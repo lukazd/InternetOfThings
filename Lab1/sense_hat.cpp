@@ -30,6 +30,7 @@ int main()
 {
     int sampleCount = 0;
     int sampleRate = 0;
+    int total_sample_count = 0;
     uint64_t rateTimer;
     uint64_t displayTimer;
     uint64_t now;
@@ -139,15 +140,19 @@ int main()
 
                 pointer = (pointer + 1) % NUM_READINGS;
 
+                if (total_sample_count < NUM_READINGS) {
+                    total_sample_count++;
+                }
+
                 printf("\n");
                 printf("Sample rate %d\n", sampleRate);
 
                 if (pressure != NULL) {
                     printf("average : roll: %2.6f, pitch: %2.6f, yaw: %2.6f, temp: %3.2f",
-                            average_roll/NUM_READINGS,
-                            average_pitch/NUM_READINGS,
-                            average_yaw/NUM_READINGS,
-                            average_temp/NUM_READINGS);
+                            average_roll/total_sample_count,
+                            average_pitch/total_sample_count,
+                            average_yaw/total_sample_count,
+                            average_temp/total_sample_count);
                     printf("\n");
                     printf("current : roll: %2.6f, pitch: %2.6f, yaw: %2.6f, temp: %3.2f",
                             roll, pitch, yaw, temp);
