@@ -78,6 +78,18 @@ int main()
          *       Not polling at the correct rate can result in weird readings.
          */
 
+        int average_yaw = 0;
+        int average_pitch = 0;
+        int average_roll = 0;
+        int average_temp = 0;
+
+        double int yaws[READINGS];
+        double int pitches[READINGS];
+        double int rolls[READINGS];
+        double int temps[READINGS];
+
+        int pointer = 0;
+
         //  poll at the rate recommended by the IMU
         usleep(imu->IMUGetPollInterval() * 1000);
         while (imu->IMURead())
@@ -88,12 +100,6 @@ int main()
             if (pressure != NULL)
             {
                 pressure->pressureRead(imuData);
-            }
-
-            //  add the humidity data to the structure
-            if (humidity != NULL)
-            {
-                humidity->humidityRead(imuData);
             }
 
             sampleCount++;
@@ -108,22 +114,51 @@ int main()
             //        The IMU is polled at the recommended rate, but this "if" statement ensures that the
             //        values are only displayed at a certain interval.
             if ((now - displayTimer) > 1000000) {
+                RTFLOAT roll = imuData.fusionPose.x() * RTMATH_RAD_TO_DEGREE;
+                RTFLOAT pitch = imuData.fusionPose.y() * RTMATH_RAD_TO_DEGREE;
+                RTFLOAT yaw = imuData.fusionPose.z() * RTMATH_RAD_TO_DEGREE;
+                RTFLOAT temp = imuData.temperature;
+
+                yaws[pointer] = yaw;
+                pitches[pointer] = pitch;
+                rolls[pointer] = roll;
+                temps[pointer] = temp;
+
+                average_yaw += yaws[pointer]
+                average_pitch += pitches[pointer]
+                average_roll += rolls[pointer]
+                average_temp += temps[pointer]
+
+                pointer += 1;
+                pointer %= READINGS;
+
+                average_yaw -= yaws[pointer]
+                average_pitch -= pitches[pointer]
+                average_roll -= rolls[pointer]
+                average_temp -= temps[pointer]
+
                 printf("Sample rate %d: %s\n", sampleRate, RTMath::displayDegrees("", imuData.fusionPose));
 
                 if (pressure != NULL) {
-                    printf("Pressure: %4.1f, height above sea level: %4.1f, temperature: %4.1f",
-                            imuData.pressure,
-                            RTMath::convertPressureToHeight(imuData.pressure), imuData.temperature);
-                }
-
-                if (humidity != NULL) {
-                    printf(", humidity: %4.1f",
-                            imuData.humidity);
+                    printf("\n")
+                    printf("average roll: %4.1f, average pitch: %4.1f, average yaw: %4.1f, average temp: %4.1f",
+                            average_roll, average_pitch, average_yaw, average_temp);
+                    printf("\n")
+                    printf("roll: %4.1f, pitch: %4.1f, yaw: %4.1f, temp: %4.1f",
+                        roll, pitch, yaw, temp);
                 }
 
                 printf("\n");
                 fflush(stdout);
                 displayTimer = now;//HINT: LEAVE THIS LINE ALONE!!!
+
+                printf("\n")
+                printf("average roll: %4.1f, average pitch: %4.1f, average yaw: %4.1f, average temp: %4.1f",
+                        average_roll, average_pitch, average_yaw, average_temp);
+                printf("\n")
+                printf("roll: %4.1f, pitch: %4.1f, yaw: %4.1f, temp: %4.1f",
+                        roll, pitch, yaw, temp);
+
             }
 
             //  update rate every second
