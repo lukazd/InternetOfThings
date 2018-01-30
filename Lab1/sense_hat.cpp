@@ -72,6 +72,18 @@ int main()
     //  set up for rate timer
     rateTimer = displayTimer = RTMath::currentUSecsSinceEpoch();
 
+    double average_yaw = 0;
+    double average_pitch = 0;
+    double average_roll = 0;
+    double average_temp = 0;
+
+    double yaws[NUM_READINGS];
+    double pitches[NUM_READINGS];
+    double rolls[NUM_READINGS];
+    double temps[NUM_READINGS];
+
+    int pointer = 0;
+
     //  now just process data
     while (1)
     {
@@ -79,18 +91,6 @@ int main()
          *       IMU its recommended rate, but display the data at a rate that may be different.
          *       Not polling at the correct rate can result in weird readings.
          */
-
-        double average_yaw = 0;
-        double average_pitch = 0;
-        double average_roll = 0;
-        double average_temp = 0;
-
-        double yaws[NUM_READINGS];
-        double pitches[NUM_READINGS];
-        double rolls[NUM_READINGS];
-        double temps[NUM_READINGS];
-
-        int pointer = 0;
 
         //  poll at the rate recommended by the IMU
         usleep(imu->IMUGetPollInterval() * 1000);
