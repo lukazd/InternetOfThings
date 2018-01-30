@@ -131,8 +131,7 @@ int main()
                 average_roll += rolls[pointer];
                 average_temp += temps[pointer];
 
-                pointer += 1;
-                pointer %= NUM_READINGS;
+                pointer = (pointer + 1) % NUM_READINGS;
 
                 average_yaw -= yaws[pointer];
                 average_pitch -= pitches[pointer];
@@ -140,17 +139,17 @@ int main()
                 average_temp -= temps[pointer];
 
                 printf("\n");
-                printf("Sample rate %d: %s\n", sampleRate, RTMath::displayDegrees("", imuData.fusionPose));
+                printf("Sample rate %d\n", sampleRate);
 
                 if (pressure != NULL) {
-                    printf("average roll: %2.3f, average pitch: %2.3f, average yaw: %2.3f, average temp: %4.1f",
+                    printf("average : roll: %2.6f, pitch: %2.6f, yaw: %2.6f, temp: %3.2f",
                             average_roll/NUM_READINGS,
                             average_pitch/NUM_READINGS,
                             average_yaw/NUM_READINGS,
                             average_temp/NUM_READINGS);
                     printf("\n");
-                    printf("roll: %4.1f, pitch: %4.1f, yaw: %4.1f, temp: %4.1f",
-                        roll, pitch, yaw, temp);
+                    printf("current : roll: %2.6f, pitch: %2.6f, yaw: %2.6f, temp: %3.2f",
+                            roll, pitch, yaw, temp);
                 }
 
                 printf("\n");
