@@ -126,10 +126,10 @@ int main()
                 rolls[pointer] = roll;
                 temps[pointer] = temp;
 
-                average_yaw += yaws[pointer]
-                average_pitch += pitches[pointer]
-                average_roll += rolls[pointer]
-                average_temp += temps[pointer]
+                average_yaw += yaws[pointer];
+                average_pitch += pitches[pointer];
+                average_roll += rolls[pointer];
+                average_temp += temps[pointer];
 
                 pointer += 1;
                 pointer %= NUM_READINGS;
