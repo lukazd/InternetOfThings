@@ -24,6 +24,8 @@
 
 #include "RTIMULib.h"
 
+#define NUM_READINGS 10
+
 int main()
 {
     int sampleCount = 0;
@@ -130,7 +132,7 @@ int main()
                 average_temp += temps[pointer]
 
                 pointer += 1;
-                pointer %= READINGS;
+                pointer %= NUM_READINGS;
 
                 average_yaw -= yaws[pointer]
                 average_pitch -= pitches[pointer]
