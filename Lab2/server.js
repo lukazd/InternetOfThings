@@ -1,6 +1,8 @@
 // Initialize Firebase
 var firebase = require("firebase");
 
+var humidity = 0;
+var temperature = 0;
 var lightR = 0;
 var lightG = 0;
 var lightB = 0
@@ -22,12 +24,27 @@ var database = firebase.database();
 var ref = database.ref();
 var updateLightRef = database.ref().child("Update_Light");
 
+setupDatabase();
+
 updateLightRef.on("value", function(snapshot) {
     var updateLight = snapshot.val();
     if (updateLight === true) {
         readLightData();
     }
 });
+
+function setUpDatabase() {
+    ref.set({
+        Humidity: humidity,
+        Temperature: temperature,
+        Light_R: lightR,
+        Light_G: lightG,
+        Light_B: lightB,
+        Light_Column: lightColumn,
+        Light_Row: lightRow
+    });
+
+}
 
 function readLightData() {
     ref.once("value", function(snapshot) {
@@ -43,7 +60,7 @@ function readLightData() {
 }
 
 function writeSensorData() {
-    ref.set({
+    ref.update({
         Humidity: 21,
         Temperature: 29
     });
