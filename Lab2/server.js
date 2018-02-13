@@ -1,5 +1,5 @@
 // Initialize Firebase
-var firebase = require(“firebase”);
+var firebase = require("firebase");
 
 var config = {
 apiKey: "AIzaSyCmygaoS_IaPm2FIhCmgZwhAsLSKENjTy0",
