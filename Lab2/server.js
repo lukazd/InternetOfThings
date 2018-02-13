@@ -30,17 +30,25 @@ updateLightRef.on("value", function(snapshot) {
 });
 
 function readLightData() {
-    var dbVals = {};
-
     ref.once("value", function(snapshot) {
         dbVals = snapshot.val();
+        lightR = dbVals["Light_R"];
+        lightG = dbVals["Light_G"];
+        lightB = dbVals["Light_B"];
+        lightColumn = dbVals["Light_Column"];
+        lightRow = dbVals["Light_Row"];
+        updateDisplay();
+        writeSensorData();
     });
+}
 
-    lightR = dbVals["Light_R"];
-    lightG = dbVals["Light_G"];
-    lightB = dbVals["Light_B"];
-    lightColumn = dbVals["Light_Column"];
-    lightRow = dbVals["Light_Row"];
-    console.log(lightR);
-    console.log(lightRow);
+function writeSensorData() {
+    ref.set({
+        Humidity: 21,
+        Temperature: 29
+    });
+}
+
+function updateDisplay() {
+    // TODO: add display update funcitonality
 }
