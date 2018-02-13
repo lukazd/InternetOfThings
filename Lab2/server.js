@@ -24,7 +24,7 @@ var database = firebase.database();
 var ref = database.ref();
 var updateLightRef = database.ref().child("Update_Light");
 
-setupDatabase();
+setUpDatabase();
 
 updateLightRef.on("value", function(snapshot) {
     var updateLight = snapshot.val();
