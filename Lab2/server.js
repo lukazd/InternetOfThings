@@ -15,7 +15,7 @@ var database = firebase.database();
 
 var updateLightRef = database.ref().child("Update_Light")
 
-ref.on("value", function(snapshot) {
+updateLightRef.on("value", function(snapshot) {
     var updateLight = snapshot.val();
     if (updateLight === true) {
         readLightData();
