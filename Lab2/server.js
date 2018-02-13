@@ -1,6 +1,12 @@
 // Initialize Firebase
 var firebase = require("firebase");
 
+var lightR = 0;
+var lightG = 0;
+var lightB = 0
+var lightColumn = 0;
+var lightRow = 0;
+
 var config = {
 apiKey: "AIzaSyCmygaoS_IaPm2FIhCmgZwhAsLSKENjTy0",
         authDomain: "sensor-lights.firebaseapp.com",
@@ -24,18 +30,17 @@ updateLightRef.on("value", function(snapshot) {
 });
 
 function readLightData() {
-    var lightR = 0;
-    var lightG = 0;
-    var lightB = 0
-    var lightColumn = 0;
-    var lightRow = 0;
+    var dbVals = {};
 
     ref.once("value", function(snapshot) {
-        console.log(snapshot.val());
+        dbVals = snapshot.val();
     });
-}
 
-/*return firebase.database().ref().once('value').then(function(snapshot) {
-  var username = snapshot.val().username;
-  var 
-});*/
+    lightR = dbVals["Light_R"];
+    lightG = dbVals["Light_G"];
+    lightB = dbVals["Light_B"];
+    lightColumn = dbVals["Light_Column"];
+    lightRow = dbVals["Light_Row"];
+    console.log(lightR);
+    console.log(lirghtRow);
+}
