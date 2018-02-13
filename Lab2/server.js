@@ -1,4 +1,6 @@
 // Initialize Firebase
+var firebase = require(“firebase”);
+
 var config = {
 apiKey: "AIzaSyCmygaoS_IaPm2FIhCmgZwhAsLSKENjTy0",
         authDomain: "sensor-lights.firebaseapp.com",
@@ -9,14 +11,22 @@ apiKey: "AIzaSyCmygaoS_IaPm2FIhCmgZwhAsLSKENjTy0",
 };
 firebase.initializeApp(config);
 
-var firebase = require(“firebase”);
 var database = firebase.database();
 
-var ref = database.ref().child("Update_Light")
+var updateLightRef = database.ref().child("Update_Light")
 
-ref.on("child_added", function(snapshot, prevChildKey) {
-        var newPost = snapshot.val();
-        console.log("Author: " + newPost.author);
-        console.log("Title: " + newPost.title);
-        console.log("Previous Post ID: " + prevChildKey);
-        });
+ref.on("value", function(snapshot) {
+    var updateLight = snapshot.val();
+    if (updateLight === true) {
+        readLightData();
+    }
+});
+
+function readListData() {
+    process.stdout.write("Update light works");
+}
+
+/*return firebase.database().ref().once('value').then(function(snapshot) {
+  var username = snapshot.val().username;
+  var 
+});*/
