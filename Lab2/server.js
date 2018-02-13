@@ -13,7 +13,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var updateLightRef = database.ref().child("Update_Light")
+var ref = database.ref();
+var updateLightRef = database.ref().child("Update_Light");
 
 updateLightRef.on("value", function(snapshot) {
     var updateLight = snapshot.val();
@@ -23,7 +24,15 @@ updateLightRef.on("value", function(snapshot) {
 });
 
 function readLightData() {
-    process.stdout.write("Update light works");
+    var lightR = 0;
+    var lightG = 0;
+    var lightB = 0
+    var lightColumn = 0;
+    var lightRow = 0;
+
+    ref.once("value", function(data) {
+        console.log(data);
+    });
 }
 
 /*return firebase.database().ref().once('value').then(function(snapshot) {
