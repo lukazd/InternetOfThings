@@ -41,7 +41,8 @@ function setUpDatabase() {
         Light_G: lightG,
         Light_B: lightB,
         Light_Column: lightColumn,
-        Light_Row: lightRow
+        Light_Row: lightRow,
+        Update_Light: false
     });
 
 }
