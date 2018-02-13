@@ -30,8 +30,8 @@ function readLightData() {
     var lightColumn = 0;
     var lightRow = 0;
 
-    ref.once("value", function(data) {
-        console.log(data);
+    ref.once("value", function(snapshot) {
+        console.log(snapshot.val());
     });
 }
 
