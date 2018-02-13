@@ -22,7 +22,7 @@ updateLightRef.on("value", function(snapshot) {
     }
 });
 
-function readListData() {
+function readLightData() {
     process.stdout.write("Update light works");
 }
 
