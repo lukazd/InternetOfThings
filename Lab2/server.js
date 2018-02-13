@@ -42,5 +42,5 @@ function readLightData() {
     lightColumn = dbVals["Light_Column"];
     lightRow = dbVals["Light_Row"];
     console.log(lightR);
-    console.log(lirghtRow);
+    console.log(lightRow);
 }
