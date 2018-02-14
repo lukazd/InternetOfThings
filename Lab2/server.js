@@ -83,8 +83,8 @@ function readLightData() {
 
 function writeSensorData() {
     ref.update({
-        Humidity: humidity,
-        Temperature: temperature
+        Humidity: parseFloat(humidity),
+        Temperature: parseFloat(temperature)
     });
 }
 
