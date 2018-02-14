@@ -30,7 +30,7 @@ var updateLightRef = database.ref().child("Update_Light");
 setUpDatabase();
 
 console.time("async");
-setInterval(getIMUdata(), 60000);
+setInterval(getIMUdata, 60000);
 
 sense.clear();
 
