@@ -1,6 +1,6 @@
 var firebase = require("firebase");
 var util = require('util');
-var nodeimu  = require('./index.js');
+var nodeimu  = require('nodeimu');
 var sense = require("sense-hat-led").sync;
 
 var IMU = new nodeimu.IMU();
