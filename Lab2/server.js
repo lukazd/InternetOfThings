@@ -86,9 +86,13 @@ function writeSensorData() {
         Humidity: parseFloat(humidity),
         Temperature: parseFloat(temperature)
     });
+    console.log("Wrote sensor data to database")
 }
 
 function updateDisplay() {
     sense.clear();
     sense.setPixel(lightRow, lightColumn, lightR, lightG, lightB);
+    console.log("Changed light")
+    console.log("Row = " + lightRow + " Column = " +  lightColumn)
+    console.log("R = " + lightR + " G = " +  lightG + " B = " + lightB)
 }
