@@ -32,8 +32,6 @@ setUpDatabase();
 console.time("async");
 setInterval(getIMUdata, 60000);
 
-sense.clear();
-
 updateLightRef.on("value", function(snapshot) {
     var updateLight = snapshot.val();
     if (updateLight === true) {
